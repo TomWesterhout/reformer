@@ -1,4 +1,5 @@
-<!-- <form accept-charset="UTF-8" action="/users" method="post">
+<!-- Classic html style form
+<form accept-charset="UTF-8" action="/users" method="post">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
 	<label for="username">Username</label>
@@ -12,7 +13,9 @@
 
 	<input type="submit" value="Submit">
 </form>
+-->
 
+<!-- Form_tag form
 <%= form_tag("/users", method: "post") do %>
 	<%= label_tag(:username, "Username") %>
 	<%= text_field_tag(:username) %><br>
@@ -24,9 +27,19 @@
 	<%= password_field_tag(:password) %><br>
 
 	<%= submit_tag("Submit") %>
-<% end %> -->
+<% end %> 
+-->
 
-<%= form_for @user do |f| %>
+<!-- Form_for form -->
+<%= form_for @user do |f| %> 
+	<% if @user.errors.any? %>
+		<ul>
+			<% @user.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
+
 	<%= f.label :username %>
 	<%= f.text_field :username %><br>
 
